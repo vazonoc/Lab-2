@@ -1,0 +1,18 @@
+import math
+
+tasks = []
+while True:
+    a = float(input("Enter the 'a' number (or enter '0' to finish): "))
+    if a == 0:
+        break
+    m = float(input("Enter the 'm' number: "))
+    b = float(input("Enter the 'b' number: "))
+    tasks.append((a, m, b))
+
+E_total = sum((a + 4 * m + b) / 6 for a, m, b in tasks)
+SD_total = sum((b - a) ** 2 / 36 for a, m, b in tasks)
+
+CI_min = E_total - 2 * math.sqrt(SD_total)
+CI_max = E_total + 2 * math.sqrt(SD_total)
+
+print(f"Project's 95% confidence interval: {CI_min:.2f} ... {CI_max:.2f} points")
